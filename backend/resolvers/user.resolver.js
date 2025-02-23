@@ -13,7 +13,9 @@ const userResolver = {
           throw new Error("Please fill all the fields");
         }
 
-        const userExists = User.findOne({ username });
+        const userExists = await User.findOne({ username });
+
+        console.log("USERE", userExists);
         if (userExists) {
           throw new Error("User already exists");
         }
