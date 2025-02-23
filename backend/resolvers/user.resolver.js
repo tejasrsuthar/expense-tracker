@@ -41,7 +41,7 @@ const userResolver = {
         throw new Error(err.message || "Internal Server Error");
       }
     },
-    login: async (_, { input }, context) => {
+    login: async (parent, { input }, context) => {
       try {
         const { username, password } = input;
 
@@ -97,7 +97,6 @@ const userResolver = {
         throw new Error(err.message || "error getting user");
       }
     },
-    // TODO => add user transaction RELATIONSHIP
   },
 };
 
