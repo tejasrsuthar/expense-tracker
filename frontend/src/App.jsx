@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import TransactionPage from "./pages/TransactionPage";
 import Header from "./components/ui/Header";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const authUser = true;
@@ -15,7 +16,7 @@ function App() {
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signUp" element={<SignUpPage />}></Route>
         <Route path="/transaction/:id" element={<TransactionPage />}></Route>
-        {/* <Route path="/*" element={<NotFoundPage />}></Route> */}
+        <Route path="/*" element={<NotFoundPage />}></Route>
       </Routes>
     </>
   );
