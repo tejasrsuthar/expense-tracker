@@ -36,6 +36,7 @@ const transationResolver = {
         });
 
         await newTransaction.save();
+        return newTransaction;
       } catch (err) {
         console.error("Error creating transaction", err);
         throw new Error("Error creating transaction", err);

@@ -16,7 +16,7 @@ const transactionSchema = new mongoose.Schema(
       enum: ["cash", "card"],
       required: true,
     },
-    catetory: {
+    category: {
       type: String,
       enum: ["saving", "expense", "investment"],
       required: true,
