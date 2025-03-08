@@ -27,6 +27,7 @@ const transactionTypeDef = `#graphql
     category: String!
     totalAmount: Float!
   }
+    
 
   input CreateTransactionInput {
     description: String!

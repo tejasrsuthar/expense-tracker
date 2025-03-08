@@ -10,3 +10,5 @@ export const GET_AUTHENTICATED_USER = gql`
     }
   }
 `;
+
+
