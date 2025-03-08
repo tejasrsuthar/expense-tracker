@@ -19,7 +19,11 @@ const Cards = () => {
       </div>
       {!loading && data.transactions?.length === 0 && (
         <p className="text-2xl font-bold text-center w-full">
-          No transactions found
+          {!loading && data.transactions?.length === 0 && (
+            <p className="text-2xl font-bold text-center w-full">
+              No transactions found
+            </p>
+          )}
         </p>
       )}
     </div>

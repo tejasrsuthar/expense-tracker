@@ -1,16 +1,20 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GET_TRANSACTION } from "../graphql/queries/transaction.query";
-// import TransactionFormSkeleton from "../components/skeletons/TransactionFormSkeleton";
+import { UPDATE_TRANSACTION } from "../graphql/mutations/transaction.mutation";
+import toast from "react-hot-toast";
+import TransactionFormSkeleton from "../components/skeletons/TransactionFormSkeleton";
 
 const TransactionPage = () => {
   const { id } = useParams();
-  console.log("id", id);
 
-  const { loading, data, error } = useQuery(GET_TRANSACTION, {
+  const { loading, data } = useQuery(GET_TRANSACTION, {
     variables: { id },
   });
+
+  const [updateTransaction, { loading: loadingUpdate }] =
+    useMutation(UPDATE_TRANSACTION);
 
   const [formData, setFormData] = useState({
     description: data?.transaction?.description || "",
@@ -23,6 +27,24 @@ const TransactionPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // convert amount to number (default its string because its coming from input)
+    const amount = parseFloat(formData.amount);
+
+    try {
+      await updateTransaction({
+        variables: {
+          input: {
+            ...formData,
+            amount,
+            transactionId: id,
+          },
+        },
+      });
+      toast.success("transaction updated successfully");
+    } catch (err) {
+      toast.err(err.message);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -46,9 +68,7 @@ const TransactionPage = () => {
     }
   }, [data]);
 
-  // const loading = true;
-
-  // if (loading) return <TransactionFormSkeleton />;
+  if (loading) return <TransactionFormSkeleton />;
 
   return (
     <div className="h-screen max-w-4xl mx-auto flex flex-col items-center">
@@ -210,8 +230,9 @@ const TransactionPage = () => {
           className="text-white font-bold w-full rounded px-4 py-2 bg-gradient-to-br
           from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600"
           type="submit"
+          disabled={loadingUpdate}
         >
-          Update Transaction
+          {loadingUpdate ? "Updating..." : "Update"}
         </button>
       </form>
     </div>
