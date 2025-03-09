@@ -6,7 +6,7 @@ const TransactionForm = () => {
   // TODO: when relationships are added
   // change the refetch query
   const [createTransaction, { loading }] = useMutation(CREATE_TRANSACTION, {
-    refetchQueries: ["GetTransactions"],
+    refetchQueries: ["GetTransactions", "GetTransactionStatistics"],
   });
 
   const handleSubmit = async (e) => {
