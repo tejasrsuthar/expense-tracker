@@ -21,6 +21,7 @@ import { configurePassport } from "./passport/passport.config.js";
 
 dotenv.config();
 configurePassport();
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -74,6 +75,15 @@ app.use(
     context: async ({ req, res }) => buildContext({ req, res }),
   })
 );
+
+// npm run build will build your optimized version of the app
+// make this dist folder as static app
+app.use(express.static(path.join(__dirname, "frontend/dist")));
+
+// all the routes except /graphql will serve from dist folder
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
+});
 
 // Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
