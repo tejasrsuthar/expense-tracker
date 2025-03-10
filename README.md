@@ -1,3 +1,7 @@
+# Expense Tracker
+
+Simple React App to manage and track expenses like Investment, Expense, and Savings. This app uses Express Backend with Apollow GraphQL Client/Server.
+
 ## Packages used
 
 express express-session graphql @apollo/server @graphql-tools/merge bcryptjs dotenv graphql-passport passport mongoose connect-mongodb-session
