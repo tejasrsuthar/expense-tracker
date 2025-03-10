@@ -28,3 +28,13 @@ express express-session graphql @apollo/server @graphql-tools/merge bcryptjs dot
 ## Resolvers
 
 - Resolvers are functions that determine how to fetch the data associated with each field in the schema.
+
+## Features
+
+- Great developer experience: Helpful tooling for Typescript, Chrome devtools, and Vs code
+- Declarative data fetching: Write a query and receive data without manually tracking loading states
+  - Apollo client handles the full request lifecycle from start to finish including tracking loading and error states. Also there is no middleware boilerplate code to setup before malking your first request and you don't need to worry about the caching or transforming responses. All you have to do is describe the data your component needed and let apollo client handle the heavy lifting.
+- Designed for modern React: Take advantage of the latest React features such as hooks
+- Incrementally adoptable: Drop Apollo into any javascript app and incorporate it feature by feature
+- Universally compatible: Use any build setup and any GraphQL API
+- Community driven: Share knowledge with thousand developers in the graphql community
